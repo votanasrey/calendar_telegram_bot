@@ -1,0 +1,5 @@
+*.tar
+venv
+.venv
+myvenv
+*.csv

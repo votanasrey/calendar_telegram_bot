@@ -1,0 +1,21 @@
+# generic metadata
+prefect-version:
+name:
+
+deployments:
+- name: memgraph_failover_application
+  version:
+  tags:
+    - memgraph_failover_application
+  description: A flow to operate the memgraph failover application. 
+  schedule:
+    # minute | hour | day of the month | month | day of the week
+    cron: 0 9 * * *
+    timezone: Asia/Phnom_Penh
+    day_or: true
+  entrypoint: main.py:flow_full_operation
+  parameters: {}
+  work_pool:
+    name: pool_memgraph_failover_application
+    work_queue_name: queue_memgraph_failover_application
+    job_variables: {} 

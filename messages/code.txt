@@ -1,1 +1,0 @@
-If you find a bug, or want to request a new feature you may create a new issue in the GitHub repo of this project. 

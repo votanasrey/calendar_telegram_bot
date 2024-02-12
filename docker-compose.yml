@@ -1,0 +1,36 @@
+version: "3.9"
+services:
+
+  ### Prefect Orion API
+  orion:
+    image: memgraph_failover_image:1.0.0
+    container_name: jira
+    restart: always
+    volumes:
+      - prefect:/root/.prefect
+    entrypoint: ["prefect", "orion", "start"]
+    environment:
+      - PREFECT_ORION_API_HOST=0.0.0.0
+      - PREFECT_API_URL=http://orion:4200/api
+    ports:
+      - 4200:4200
+    profiles: ["prefect-orion"]
+
+  ### Prefect Agent
+  
+  agent:
+    image: memgraph_failover_image:1.0.0
+    restart: always
+    entrypoint: ["prefect", "agent", "start", "-q", "queue_memgraph_failover_application"]
+    environment:
+      - PREFECT_API_URL=http://orion:4200/api
+    profiles: ["prefect-agent"]
+
+
+volumes:
+  prefect:
+  minio:
+  
+networks:
+  default:
+    name: prefect-network
