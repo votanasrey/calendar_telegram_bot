@@ -1,8 +1,12 @@
 import asyncio
-import logging  # Add logging capability
+import logging  
 from telegram import Bot
 from telegram.error import TelegramError
+import os 
+from dotenv import load_dotenv
+load_dotenv()
 
+chat_token = os.getenv("CHAT_TOKEN")
 
 async def send_msg(token, chat_id, msg: str):
     try:
@@ -15,7 +19,7 @@ async def send_msg(token, chat_id, msg: str):
 
 def send_telegram_message(text_message:str):
 
-    token = "5955725734:AAHB8OJup3aq4Wqt6_3GtO634DMrZ5lF5Mo" 
+    token = chat_token
     chat_id = -977791565
     msg = text_message
 
